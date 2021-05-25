@@ -2,6 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--bg-dropdown);
+  background: var(--bg);
+  transition: background 500ms ease-in-out, color 1000ms ease-in-out;
 }
 
 ul {
@@ -18,8 +21,9 @@ a {
 .navbar {
   height: 70px;
   width: 100%;
-  background: black;
+  background: var(--bg-nav);
   color: white;
+  transition: background 500ms ease-in-out, color 1000ms ease-in-out;
 }
 
 .navbar-nav {
@@ -36,9 +40,111 @@ img {
 
 header {
   padding: 1em;
-  background: lightgoldenrodyellow;
+  background: var(--blue);
   margin-bottom: 1em;
   padding-bottom: 3.5em;
   text-align: center;
-  clip-path: polygon();
+  clip-path: polygon(100% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 0% 0%);
+  transition: background 500ms ease-in-out, color 1000ms ease-in-out;
+}
+
+.dropdown {
+  position: absolute;
+  width: 500px;
+  opacity: 0;
+  z-index: 2;
+  background: var(--bg-dropdown);
+  border-top: 2px solid white;
+
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 3rem;
+  margin-top: 2rem;
+  padding: 0.5rem;
+
+  box-shadow: rgba(2, 8, 20, 0.1) 0px 0.175em 0.5em;
+  transform: translateX(-45%);
+
+  transition: opacity 0.5s ease-out;
+}
+
+.has-dropdown:focus-within .dropdown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dropdown-item a {
+  width: 100%;
+  height: 100%;
+  size: 0.7rem;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.dropdown-item a::before {
+  content: " ";
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+:root {
+  --gray0: #52489c;
+  --gray1: #4062bb;
+  --gray2: #59c3c3;
+  --gray3: #ebebeb;
+  --gray4: #f45b69;
+  --gray5: #ffc1cf;
+  --gray6: #04080f;
+  --blue: #4062bb;
+  --purple: #e2adf2;
+  --yellow: #f2bb05;
+}
+
+.light {
+  --bg: var(--gray5);
+  --bg-nav: linear-gradient(to right, var(--gray4), var(--gray3));
+  --bg-dropdown: var(--gray2);
+  --text: var(--gray6);
+  --border-color: var(--blue);
+}
+
+.dark {
+  --bg: var(--gray5);
+  --bg-nav: linear-gradient(to right, var(--gray5), var(--gray6));
+  --bg-dropdown: var(--gray6);
+  --text: var(--gray0);
+  --border-color: var(--blue);
+  --blue: var(--gray6);
+}
+
+.solar {
+  --bg: var(--gray3);
+  --bg-nav: linear-gradient(to right, var(--gray2), var(--gray6));
+  --bg-dropdown: var(--yellow);
+  --text: var(--gray2);
+  --border-color: var(--gray5);
+  --blue: var(--yellow);
+}
+
+@keyframes color-rotate {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+.logo:hover {
+  animation: color-rotate 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
